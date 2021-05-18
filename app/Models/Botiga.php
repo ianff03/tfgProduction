@@ -2,22 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Botiga extends Model
 {
-    use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
-        'nom','descripcio', 'telf_1', 'telf_2', 'direccio', 'cp', 'poblacio', 'provincia', 'email', 'instagram', 'facebook', 'twitter', 'nif', 'cif'
+        'nom','descripcio', 'telf_1', 'telf_2', 'id_usuari', 'direccio', 'cp', 'poblacio', 'provincia', 'email','img_perfil','img_portada', 'instagram', 'facebook', 'twitter', 'nif', 'cif'
     ];
 
     //taula
     protected $table = 'botigues';
 
-    protected function user()
+    public function user()
     {
-        return $this->belongsTo('App\Models\User', 'id_usuari');
+        return $this->belongsTo('App\User', 'id_usuari');
+    }
+
+    public function productes()
+    {
+        return $this->hasMany('App\Models\Producte','id_botiga');
     }
 }

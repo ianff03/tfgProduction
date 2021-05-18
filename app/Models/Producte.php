@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Producte extends Model
 {
-    use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
-        'ref', 'nom', 'descripcio', 'preu', 'stock', 'actiu', 'id_categoria'
+        'imatge','ref', 'nom', 'descripcio', 'preu', 'stock', 'actiu', 'id_categoria','visites','id_botiga','eliminat'
     ];
 
     //taula
@@ -22,6 +22,7 @@ class Producte extends Model
     {
         return $this->belongsTo("App\Models\Botiga", "id_botiga");
     }
+    
 
     public function categoria()
     {
